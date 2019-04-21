@@ -1,1 +1,4 @@
 .vscode
+
+#python output
+*/__pycache__
