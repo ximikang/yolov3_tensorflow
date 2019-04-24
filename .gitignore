@@ -1,4 +1,5 @@
 .vscode
+.idea
 
 #python output
 */__pycache__
