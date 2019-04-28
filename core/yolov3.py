@@ -13,7 +13,7 @@ class darknet53(object):
     def _darknet_block(inputs, filters):
         shortcut = inputs
         inputs = common.conv2d_fixed_padding(inputs, filters*1, 1)
-        inputs = common.conv2d_fixed_padding(inputs, filters*3, 3)
+        inputs = common.conv2d_fixed_padding(inputs, filters*2, 3)
 
         inputs = inputs + shortcut
         return inputs
@@ -70,12 +70,11 @@ class yolov3(object):
 
     def _detection_layer(self, inputs, anchors):
         num_anchors = len(anchors)
-        featrue_map = slim.conv2d(inputs, num_anchors*(5 + self._NUM_CLASSES), 1,
-                                  stride=1,
-                                  normalizer_fn=None,
+        feature_map = slim.conv2d(inputs, num_anchors * (5 + self._NUM_CLASSES), 1,
+                                  stride=1, normalizer_fn=None,
                                   activation_fn=None,
-                                  biases_initialzer=tf.zeros_initializer())
-        return featrue_map
+                                  biases_initializer=tf.zeros_initializer())
+        return feature_map
 
 
     @staticmethod
