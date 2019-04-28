@@ -118,6 +118,15 @@ def load_weights(var_list, weights_file):
 
     return assign_ops
 
+
+def read_coco_names(class_file_name):
+    names = {}
+    with open(class_file_name, 'r') as data:
+        for ID, name  in enumerate(data):
+            names[ID] = name.strip('\n')
+    return names
+
+
 if __name__ == '__main__':
     #get_anchors('./data/raccoon_anchors.txt', 416, 416)
     pass
